@@ -3,6 +3,7 @@ import os
 from PIL import Image
 import struct
 import sys
+import time
 
 # define encoding method tags
 QOI_OP_RUN   = 0xc0
@@ -19,7 +20,6 @@ output_file_name = 'qoi_output.qoi'
 output_rel_path = 'images/'
 output_path = os.path.join(output_rel_path, output_file_name)
 image_rel_path = 'images/'
-#image_name = 'black_test_image_64x64.jpg'
 image_name = 'monument.jpg'
 image_path = os.path.join(image_rel_path, image_name)
 image = Image.open(image_path)
@@ -96,6 +96,7 @@ byte_stream = bytearray()
 byte_stream += QOI_HEADER
 
 # write main code here iterating through all pixels
+start_time = time.time()
 for offset in range(height * width):
     # update current pixel to current offset in color stream
     current_pixel.r = color_stream[offset * channels]
@@ -142,7 +143,9 @@ for offset in range(height * width):
 byte_stream += QOI_END_MARKER
 with open(output_path, 'wb') as f:
     f.write(byte_stream)
+end_time = time.time()
+encode_time = end_time - start_time
 # print compression stats to terminal
-print("Compressed " + str(raw_image_bytes) + " bytes raw image to " + str(len(byte_stream)) + " bytes at " + str(output_path))
+print("Compressed " + str(raw_image_bytes) + " bytes raw image to " + str(len(byte_stream)) + " bytes at " + str(output_path) + " in " + str(round(encode_time,4)) + " seconds")
 print("True compression -- " + str(round((raw_image_bytes/(len(byte_stream))),1)) + ":1")
 print("QOI Optimization Factor (worst case QOI compressed bytes:actual compressed bytes) -- " + str(round((max_size/(len(byte_stream))),1)) + ":1")
