@@ -3,7 +3,7 @@
 
 ** Has not been through any benchmark testing, optimization, and has little error handling. **
 
-Encoder.py reads an image specified in script by 'image_name' which should be place inside a directory called 'images' within the encoder script directory. Encoder.py outputs a binary .qoi file to the 'images' directory. All directory paths in Encoder.py are relative to the directory that holds Encoder.py. Encoder.py uses a Pixel class. This seems slow. Code will be refactored at a later date to remove classes and class functions.
+Encoder.py reads an image specified in script by 'image_name' which should be place inside a directory called 'images' within the encoder script directory. Encoder.py outputs a binary .qoi file to the 'images' directory. All directory paths in Encoder.py are relative to the directory that holds Encoder.py.
 
 Decoder.py takes in a qoi file and decodes into an array of RGB(A) pixels. Shows image with PIL and saves to jpg. If the file you are reading has 4 channels you must manually change the PIL save as type to png to jpg.
 
