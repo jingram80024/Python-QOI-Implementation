@@ -1,6 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-venv/** linguist-vendored
-references/** linguist-vendored
-images/** linguist-generated
-.gitattributes -linguist-documentation
+venv/** linguist-vendored=true
+references/** linguist-vendored=true
+images/** linguist-generated=true
+.gitattributes -linguist-documentation=true
